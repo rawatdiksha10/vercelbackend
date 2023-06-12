@@ -41,35 +41,24 @@ app.use(
 
  
 // Express-Session
-// app.use(
-//   session({
-//     name: env.SESSION_COOKIE_NAME,
-//     secret: env.SESSION_SECRET,
-//     rolling: true,
-//     resave: true,
-//     saveUninitialized: false,
-//     store: mongoDBstore,
-//     cookie: {
-//       path:'/',
-//       maxAge: 1000 * 60 * Number(env.SESSION_EXPIRES_IN),
-//       sameSite: true,
-//       secure: false,
-//       httpOnly: true
-//     }
-//   })
-// );
-
 app.use(
   session({
+    name: env.SESSION_COOKIE_NAME,
     secret: env.SESSION_SECRET,
-    resave: false,
+    rolling: true,
+    resave: true,
     saveUninitialized: false,
+    store: mongoDBstore,
     cookie: {
-      secure: true, // Set to true if using HTTPS
-      maxAge: 1000 * 60 * Number(env.SESSION_EXPIRES_IN), // Cookie expiration time in milliseconds
-    },
+      path:'/',
+      maxAge: 1000 * 60 * Number(env.SESSION_EXPIRES_IN),
+      sameSite: true,
+      secure: false,
+      httpOnly: true
+    }
   })
 );
+
 
 app.listen(env.PORT, () => console.log("Server running on port: " + env.PORT));
 app.use('/api/account', account);
