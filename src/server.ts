@@ -54,7 +54,7 @@ app.use(
       maxAge: 1000 * 60 * Number(env.SESSION_EXPIRES_IN),
       sameSite: true,
       secure: false,
-      httpOnly: true
+      httpOnly: false
     }
   })
 );

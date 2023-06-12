@@ -21,7 +21,7 @@ router.post("/login", async (req, res) => {
         }
     }) 
     
-    console.log(resp);
+
     await res.send(resp);
 });
 
