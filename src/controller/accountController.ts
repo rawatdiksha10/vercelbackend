@@ -19,7 +19,9 @@ router.post("/login", async (req, res) => {
             // req.session.user = { userid:req.body.userid, name:u.name, roleflg:u.roleflg };
             (req.session as any).user = { userid:req.body.userid, name:u.name, roleflg:u.roleflg };
         }
-    })  
+    }) 
+    
+    console.log(resp);
     await res.send(resp);
 });
 
