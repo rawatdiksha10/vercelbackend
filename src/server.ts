@@ -52,9 +52,9 @@ app.use(
     cookie: {
       path:'/',
       maxAge: 1000 * 60 * Number(env.SESSION_EXPIRES_IN),
-      sameSite: true,
-      secure: false,
-      httpOnly: false
+      sameSite: "strict",
+      secure: true,
+      httpOnly: true
     }
   })
 );
