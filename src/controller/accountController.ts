@@ -16,7 +16,8 @@ router.post("/login", async (req, res) => {
     .then(async (u:any) => {
         if (u) {
             resp = { userid:req.body.userid, name:u.name, role:u.roleflg, sessionId:req.sessionID };
-            req.session.user = { userid:req.body.userid, name:u.name, roleflg:u.roleflg };
+            // req.session.user = { userid:req.body.userid, name:u.name, roleflg:u.roleflg };
+            (req.session as any).user = { userid:req.body.userid, name:u.name, roleflg:u.roleflg };
         }
     })  
     await res.send(resp);
@@ -75,7 +76,7 @@ router.post("/resetpwdinit", async (req, res) => {
 });
 
 router.get("/checkAuthorization", async (req, res) => {
-    await res.send(req.session.user);
+    await res.send((req.session as any).user);
 });
 
 router.delete("/logout/:id", async (req, res) => {
